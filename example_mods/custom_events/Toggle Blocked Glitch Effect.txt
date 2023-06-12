@@ -1,0 +1,9 @@
+Spawns in a Glitchy-type of effect, notably the effect from 
+Blocked 3.0
+
+No values are needed, trigger the event one time to enable it, 
+trigger it again to disable it.
+
+THIS WILL NOT WORK IF YOU HAVE A SHADER ADDED TO YOUR SONG BY LUA
+YOU NEED TO MAKE SURE THERE'S NO LUA SHADERS EXISTING BEFORE USING
+(ex. addChromaticAberrationEffect overrides the event here)

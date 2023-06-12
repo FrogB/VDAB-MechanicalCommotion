@@ -1,0 +1,4 @@
+DO NOT DELETE THE BF ASSETS IN THIS FOLDER.
+
+These are used for the Graphics Options Menu (specifically anti-aliasing), and deleting these will cause the game to crash, making you 
+unable to change any graphic settings.

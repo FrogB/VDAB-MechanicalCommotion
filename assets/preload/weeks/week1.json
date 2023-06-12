@@ -1,0 +1,24 @@
+{
+	"songs": [
+		["Computerized", "bombu", [146, 113, 253]],
+		["Scientific", "bombu", [146, 113, 253]],
+		["Inventive", "bombu", [146, 113, 253]]
+	],
+
+	"weekCharacters": [
+		"bombu",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Bombu",
+	"weekBefore": "tutorial",
+	"weekName": "Week 1",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false,
+
+	"difficulties": "Hard"
+}

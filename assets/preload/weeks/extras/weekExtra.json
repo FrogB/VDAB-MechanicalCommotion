@@ -1,0 +1,28 @@
+{
+	"songs": [
+		["Cyberspace", "bombu", [255, 255, 255]],
+		["Futuristic", "bombu", [255, 255, 255]],
+		["Technology", "bombu", [96, 48, 48]],
+		["Infraction", "bombai", [96, 48, 48]],
+		["Blaze", "bombai", [96, 48, 48]],
+		["Trolling", "banbodi", [96, 48, 48]],
+		["Computer Rivalry", "psmen", [96, 48, 48]],
+		["???", "terabite", [96, 48, 48]]
+	],
+
+	"weekCharacters": [
+		"",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "extras lmao why are you even putting this in your mods folder",
+	"weekBefore": "tutorial",
+	"weekName": "lmao",
+	"difficulties": "Hard",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

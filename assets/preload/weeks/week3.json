@@ -1,0 +1,23 @@
+{
+	"songs": [
+		["Gigabite", "bombu", [255, 255, 255]],
+		["Gourmet", "bombu", [255, 255, 255]],
+		["Terabitten", "terabite", [96, 48, 48]]
+	],
+
+	"weekCharacters": [
+		"",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "DATE NIGHT...?",
+	"weekBefore": "week2",
+	"weekName": "Week 3",
+	"difficulties": "Hard",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}
