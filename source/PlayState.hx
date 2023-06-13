@@ -5878,12 +5878,11 @@ class PlayState extends MusicBeatState
 
 		switch (SONG.song.toLowerCase())
 		{
-			case 'songname': //songs involving voicelines go here
+			case 'futuristic': //songs involving voicelines go here
 				switch(curStep)
 				{
-					case 234:
-						subtitleManager.addSubtitle('Fine...', 0.02, 1); //example
-				}
+					case 83:
+						subtitleManager.addSubtitle('Hey guys, BombuGaming69 here...', 0.02, 1.3); //example
 		}
 
 		super.stepHit();
