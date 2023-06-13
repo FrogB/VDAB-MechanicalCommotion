@@ -91,16 +91,26 @@ class PlayState extends MusicBeatState
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
 	public static var ratingStuff:Array<Dynamic> = [
-		['You Suck!', 0.2], //From 0% to 19%
-		['Shit', 0.4], //From 20% to 39%
-		['Bad', 0.5], //From 40% to 49%
-		['Bruh', 0.6], //From 50% to 59%
-		['Meh', 0.69], //From 60% to 68%
-		['Nice', 0.7], //69%
-		['Good', 0.8], //From 70% to 79%
-		['Great', 0.9], //From 80% to 89%
-		['Sick!', 1], //From 90% to 99%
-		['Perfect!!', 1] //The value on this one isn't used actually, since Perfect is always "1"
+		['R', 0.2], //From 0% to 19%
+		['F', 0.4], //From 20% to 39%
+		['E', 0.5], //From 40% to 49%
+		['D', 0.6], //here onwards is advanced rating stuff
+		['C', 0.7],
+		['B', 0.8],
+		['A', 0.85],
+		['A.', 0.9],
+		['A:', 0.93],
+		['AA', 0.9650],
+		['AA.', 0.99],
+		['AA:', 0.9970],
+		['AAA', 0.9980],
+		['AAA.', 0.9990],
+		['AAA:', 0.99955],
+		['AAAA', 0.99970],
+		['AAAA.', 0.99980],
+		['AAAA:', 0.999935],
+		['AAAAA', 1],
+		['AAAAA', 1] //perfect, value on this isnt used
 	];
 
 	//event variables
@@ -1411,7 +1421,7 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'termination':
-				credits = "ATTEMPTING TO TERMINATE THE FOLLOWING USER: "+ " " + (FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'Boyfriend') + "!"; //this is just a test for the username grabbing 
+				credits = "ATTEMPTING TO TERMINATE THE FOLLOWING USER: "+ " " + (FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'Boyfriend'); //this is just a test for the username grabbing 
 			default:
 				credits = '';
 		}	
@@ -2638,7 +2648,7 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				scoreTxt.text = 'Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ' | (' + ratingFC + ' ) ' + ratingName;
+				scoreTxt.text = 'Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ' | (' + ratingFC + ') ' + ratingName;
 			}
 
 		if(ClientPrefs.scoreZoom && !miss && !cpuControlled)
@@ -3759,16 +3769,6 @@ class PlayState extends MusicBeatState
 		FlxG.watch.addQuick("secShit", curSection);
 		FlxG.watch.addQuick("beatShit", curBeat);
 		FlxG.watch.addQuick("stepShit", curStep);
-
-		switch (curSong.toLowerCase())
-		{
-			case 'hypercube':
-				for (i in 0...opponentStrums.length) {
-				setOnLuas('defaultOpponentStrumX' + i, opponentStrums.members[i].x);
-				setOnLuas('defaultOpponentStrumY' + i, opponentStrums.members[i].y);
-				opponentStrums.members[i].alpha = 0.2;
-				}
-		}
 
 		// RESET = Quick Game Over Screen
 		if (!ClientPrefs.noReset && controls.RESET && canReset && !inCutscene && startedCountdown && !endingSong)
