@@ -60,8 +60,8 @@ class VisualsUISubState extends BaseOptionsMenu
 			"What should the Time Bar display?",
 			'timeBarType',
 			'string',
-			'Song + Time Left/Total Time',
-			['Song + Time Left/Total Time', 'Song + Time Elapsed/Total Time', 'Song and Time Elapsed', 'Song Name']);
+			'Song + Time Elapsed/Total Time',
+			['Song + Time Elapsed/Total Time', 'Song + Time Left/Total Time', 'Song Name']);
 		addOption(option);
 
 		var option:Option = new Option('Eyesores & Flashing Lights',
