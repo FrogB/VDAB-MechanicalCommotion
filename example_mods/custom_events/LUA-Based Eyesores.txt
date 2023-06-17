@@ -1,2 +1,0 @@
-Scrolls through the RGB wheel in an attempt to distract the player
-Value 1: Off/On (0/1)
