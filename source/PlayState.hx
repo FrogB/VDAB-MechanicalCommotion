@@ -5883,6 +5883,7 @@ class PlayState extends MusicBeatState
 				{
 					case 83:
 						subtitleManager.addSubtitle('Hey guys, BombuGaming69 here...', 0.02, 1.3); //example
+				}
 		}
 
 		super.stepHit();
