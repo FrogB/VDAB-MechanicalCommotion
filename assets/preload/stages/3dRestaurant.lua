@@ -3,8 +3,8 @@ function onCreate()
 	makeLuaSprite('bg', 'expunged/restaurant/3D_Hut_BG', -200, 150);
 	scaleObject('bg', 0.8, 0.8)
 
-	makeLuaSprite('gp', 'expunged/restaurant/glasspane', -400, -250);
-	scaleObject('gp', 1.1, 1.1)
+	makeLuaSprite('gp', 'expunged/restaurant/glasspane', -400, -350);
+	scaleObject('gp', 1.2, 1.2)
 
 	makeLuaSprite('table', 'expunged/restaurant/tables', -1000, 0);
 	scaleObject('table', 1.4, 1.4)

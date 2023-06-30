@@ -7,6 +7,8 @@ import Discord.DiscordClient;
 import Section.SwagSection;
 import Song.SwagSong;
 import Shaders.PulseEffect;
+import Shaders.BlockedGlitchShader;
+import Shaders.BlockedGlitchEffect;
 import WiggleEffect.WiggleEffectType;
 import flixel.FlxBasic;
 import flixel.FlxCamera;
@@ -207,6 +209,8 @@ class PlayState extends MusicBeatState
 	private var strumLine:FlxSprite;
 
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect(); //to burn other people's eyes (eyesores)
+	public static var blockedShader:BlockedGlitchEffect;
+	public static var blockedFilter:ShaderFilter;
 
 	public var curbg:FlxSprite;
 
@@ -1388,7 +1392,7 @@ class PlayState extends MusicBeatState
 		reloadHealthBarColors();
 
 		scoreTxt = new FlxText(0, healthBarBG.y + 40, FlxG.width, "", 20);
-		scoreTxt.setFormat(Paths.font("Symtext.ttf"), 18, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.setFormat(Paths.font("Symtext.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.scrollFactor.set();
 		scoreTxt.visible = !ClientPrefs.hideHud;
@@ -1438,7 +1442,7 @@ class PlayState extends MusicBeatState
 		}
 
 		creditsWatermark = new FlxText(4, healthBarBG.y + 50, 0, credits, 14);
-		creditsWatermark.setFormat(Paths.font("Symtext.ttf"), 14, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		creditsWatermark.setFormat(Paths.font("Symtext.ttf"), 10, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		creditsWatermark.scrollFactor.set();
 		creditsWatermark.borderSize = 1.25;
 		add(creditsWatermark);
@@ -1455,13 +1459,13 @@ class PlayState extends MusicBeatState
 		}
 
 		kadeEngineWatermark = new FlxText(4, textYPos, 0, SONG.song + " | PE 0.6.3", 14);
-		kadeEngineWatermark.setFormat(Paths.font("Symtext.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		kadeEngineWatermark.setFormat(Paths.font("Symtext.ttf"), 12, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
 		kadeEngineWatermark.borderSize = 1.25;
 		add(kadeEngineWatermark);
 
 		devWatermark = new FlxText(4, textYPosAlt, 0, "MECHANICAL COMMOTION DEVBUILD #1", 14);
-		devWatermark.setFormat(Paths.font("Symtext.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		devWatermark.setFormat(Paths.font("Symtext.ttf"), 12, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		devWatermark.scrollFactor.set();
 		devWatermark.borderSize = 1.25;
 		add(devWatermark);
@@ -1492,6 +1496,11 @@ class PlayState extends MusicBeatState
 
 		// cameras = [FlxG.cameras.list[1]];
 		startingSong = true;
+
+		if (SONG.song.toLowerCase() == 'termination')
+		{
+			blockedShader = new BlockedGlitchEffect(1280, 1, 1, true);
+		}
 		
 		#if LUA_ALLOWED
 		for (notetype in noteTypeMap.keys())
@@ -1783,6 +1792,20 @@ class PlayState extends MusicBeatState
 				loopDelay: 0
 			});
 		}
+	
+	function glitchthatfuckingshit()
+	{
+		camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+		new FlxTimer().start(0.2, function(tmr:FlxTimer)
+		{
+			nowunglitchit();
+		});
+	}
+
+	function nowunglitchit()
+	{
+		camHUD.setFilters([]);
+	}
 
 	function set_songSpeed(value:Float):Float
 	{
@@ -2640,32 +2663,6 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	public function updateScore(miss:Bool = false)
-		{
-			if (ratingName == '?')
-			{
-				scoreTxt.text =	'Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: 0% | N/A';
-			}
-			else
-			{
-				scoreTxt.text = 'Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ' | (' + ratingFC + ') ' + ratingName;
-			}
-
-		if(ClientPrefs.scoreZoom && !miss && !cpuControlled)
-		{
-			if(scoreTxtTween != null) {
-				scoreTxtTween.cancel();
-			}
-			scoreTxt.scale.x = 1.075;
-			scoreTxt.scale.y = 1.075;
-			scoreTxtTween = FlxTween.tween(scoreTxt.scale, {x: 1, y: 1}, 0.2, {
-				onComplete: function(twn:FlxTween) {
-					scoreTxtTween = null;
-				}
-			});
-		}
-		callOnLuas('onUpdateScore', [miss]);
-	}
 
 	public function setSongTime(time:Float)
 	{
@@ -3456,11 +3453,21 @@ class PlayState extends MusicBeatState
 				maxnps = nps;
 		}
 
+		if (blockedShader != null)
+		{
+			blockedShader.update(elapsed);
+		}
+
 		//songs with hardcoded events go in here
 		/*switch (SONG.song.toLowerCase())
 			{
 			}
 		*/
+
+		if(FlxG.random.bool(50) && SONG.song.toLowerCase() == 'termination') 
+		{
+			glitchthatfuckingshit();
+		}
 
 		switch (curStage)
 		{
@@ -3632,6 +3639,15 @@ class PlayState extends MusicBeatState
 			} else {
 				boyfriendIdleTime = 0;
 			}
+		}
+
+		if (ratingName == '?')
+		{
+			scoreTxt.text =	'NPS: ' + nps + ' | Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: 0% | N/A';
+		}
+		else
+		{
+			scoreTxt.text =  'NPS: ' + nps + ' | Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ' | (' + ratingFC + ') ' + ratingName;
 		}
 
 		super.update(elapsed);
@@ -3962,8 +3978,6 @@ class PlayState extends MusicBeatState
 		setOnLuas('cameraY', camFollowPos.y);
 		setOnLuas('botPlay', cpuControlled);
 		callOnLuas('onUpdatePost', [elapsed]);
-
-		RecalculateRating();
 
 		for (i in shaderUpdates){
 			i(elapsed);
@@ -4889,7 +4903,23 @@ class PlayState extends MusicBeatState
 			{
 				songHits++;
 				totalPlayed++;
-				RecalculateRating(false);
+				RecalculateRating();
+
+				//moved popup score shit
+				if(ClientPrefs.scoreZoom && !cpuControlled)
+				{
+					if(scoreTxtTween != null) {
+						scoreTxtTween.cancel();
+					}
+					scoreTxt.scale.x = 1.025;
+					scoreTxt.scale.y = 1.025;
+					scoreTxtTween = FlxTween.tween(scoreTxt.scale, {x: 1, y: 1}, 0.2, {
+						ease: FlxEase.cubeOut,
+						onComplete: function(twn:FlxTween) {
+							scoreTxtTween = null;
+						}
+					});
+				}
 			}
 		}
 
@@ -6257,7 +6287,6 @@ class PlayState extends MusicBeatState
 			if (songMisses >= 100000) ratingFC = "STDCB";
 			else if (songMisses >= 10000000) ratingFC = "SPDCB"; //how, just how?
 		}
-		updateScore(badHit); // score will only update after rating is calculated, if it's a badHit, it shouldn't bounce -Ghost
 		setOnLuas('rating', ratingPercent);
 		setOnLuas('ratingName', ratingName);
 		setOnLuas('ratingFC', ratingFC);
