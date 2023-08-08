@@ -24,7 +24,11 @@ class FlashingState extends MusicBeatState
 		add(bg);
 
 		warnText = new FlxText(0, 0, FlxG.width,
-			"Hey, Thanks for downloading this mod!\nThis is NOT an official mod of Vs Dave and Bambi,\nnor is it meant to replace it. \nPress Enter to continue!",
+			"Hey there, thanks for downloading the DEMO of Fearsome Funky Night!\n
+			Just a small warning that this mod contains some flashing & epilepsy effects in some songs.\n
+			If you wish to disable them, please do so in the Graphics Section of the Options Menu\n
+			This is NOT an official mod of Bambi's Purgatory or Vs. Dave & Bambi, nor is it meant to replace any of them.\n
+			Press ENTER or ESC to continue",
 			32);
 		warnText.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER);
 		warnText.screenCenter(Y);

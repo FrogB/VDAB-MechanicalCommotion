@@ -14,7 +14,9 @@ class ClientPrefs {
 	public static var showFPS:Bool = true;
 	public static var flashing:Bool = true;
 	public static var globalAntialiasing:Bool = true;
-	public static var judgementCounter:String = 'Complex'; //judgement day :moyai:
+	//LATESTRELIC825'S PSYCH ENGINE VARIABLES (temporary ones only since i'll probably remove these options soon except for the judgement counter.)
+	public static var judgementCounter:String = 'Complex';
+	public static var healthBarType:String = 'Dave Engine';
 	public static var selfAwareness = true;
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
@@ -34,7 +36,7 @@ class ClientPrefs {
 	public static var healthBarAlpha:Float = 1;
 	public static var controllerMode:Bool = false;
 	public static var hitsoundVolume:Float = 0;
-	public static var pauseMusic:String = 'Tea Time';
+	public static var pauseMusic:String = 'Fearsome';
 	public static var checkForUpdates:Bool = true;
 	public static var comboStacking = true;
 	public static var gameplaySettings:Map<String, Dynamic> = [
@@ -107,6 +109,8 @@ class ClientPrefs {
 		FlxG.save.data.noteSplashes = noteSplashes;
 		FlxG.save.data.lowQuality = lowQuality;
 		FlxG.save.data.judgementCounter = judgementCounter;
+		FlxG.save.data.healthBarType = healthBarType;
+		FlxG.save.data.timeBarType = timeBarType;
 		FlxG.save.data.selfAwareness = selfAwareness;
 		FlxG.save.data.shaders = shaders;
 		FlxG.save.data.framerate = framerate;
@@ -174,6 +178,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.judgementCounter != null) {
 			judgementCounter = FlxG.save.data.judgementCounter;
+		}
+		if(FlxG.save.data.healthBarType != null) {
+			healthBarType = FlxG.save.data.healthBarType;
 		}
 		if(FlxG.save.data.selfAwareness != null) {
 			selfAwareness = FlxG.save.data.selfAwareness;

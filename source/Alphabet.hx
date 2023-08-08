@@ -209,7 +209,7 @@ class Alphabet extends FlxSpriteGroup
 					x = FlxMath.lerp(x, Math.exp(scaledY * -0.8) * 70 + (FlxG.width * 0.1), 0.16);
 
 				if (x > FlxG.width + 30)
-					x = FlxG.width + 60;
+					x = FlxG.width + 30;
 			case "D-Shape":
 				y = FlxMath.lerp(y, (scaledY * 90) + (FlxG.height * 0.45), 0.16);
 	

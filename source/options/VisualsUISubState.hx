@@ -42,6 +42,14 @@ class VisualsUISubState extends BaseOptionsMenu
 			['Disabled', 'Simple', 'Complex']);
 		addOption(option);
 
+		var option:Option = new Option('Health Bar UI Style:',
+			"Which Health Bar UI style do you want the game to show?",
+			'healthBarType',
+			'string',
+			'Dave Engine',
+			['Dave Engine', 'Vanilla']);
+		addOption(option);
+
 		var option:Option = new Option('Note Splashes',
 			"If unchecked, hitting \"Sick!\" notes won't show particles.",
 			'noteSplashes',
@@ -60,8 +68,8 @@ class VisualsUISubState extends BaseOptionsMenu
 			"What should the Time Bar display?",
 			'timeBarType',
 			'string',
-			'Song + Time Elapsed/Total Time',
-			['Song + Time Elapsed/Total Time', 'Song + Time Left/Total Time', 'Song Name']);
+			'Song + Time Left/Total Time',
+			['Song + Time Left/Total Time', 'Song + Time Elapsed/Total Time', 'Song and Time Elapsed', 'Song Name']);
 		addOption(option);
 
 		var option:Option = new Option('Eyesores & Flashing Lights',
@@ -111,8 +119,8 @@ class VisualsUISubState extends BaseOptionsMenu
 			"What song do you prefer for the Pause Screen?",
 			'pauseMusic',
 			'string',
-			'Tea Time',
-			['None', 'Breakfast', 'Tea Time']);
+			'Fearsome',
+			['None', 'Breakfast', 'Tea Time', 'Fearsome']);
 		addOption(option);
 		option.onChange = onChangePauseMusic;
 		

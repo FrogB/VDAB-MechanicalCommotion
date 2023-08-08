@@ -8,6 +8,7 @@ import flixel.util.FlxColor;
 
 class MenuItem extends FlxSprite
 {
+	public var targetX:Float = 0;
 	public var targetY:Float = 0;
 	public var flashingInt:Int = 0;
 
@@ -35,6 +36,7 @@ class MenuItem extends FlxSprite
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+		x = FlxMath.lerp(x, (targetX * 450) + 420, 0.17);
 		y = FlxMath.lerp(y, (targetY * 120) + 480, CoolUtil.boundTo(elapsed * 10.2, 0, 1));
 
 		if (isFlashing)

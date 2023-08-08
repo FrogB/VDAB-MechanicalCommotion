@@ -35,7 +35,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		rpcTitle = 'Gameplay Settings Menu'; //for Discord Rich Presence
 
 		var option:Option = new Option('Self-Awareness and OS Functions',
-			"If checked, uses your Operating System in certain parts of the mod.\n(Ex. Exploitation gets your computer's username.)",
+			"If checked, uses your Operating System in certain parts of the mod.\n(Ex. Nether/Exploitation gets your computer's username.)",
 			'selfAwareness',
 			'bool',
 			true);

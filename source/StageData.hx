@@ -16,6 +16,10 @@ typedef StageFile = {
 	var directory:String;
 	var defaultZoom:Float;
 	var isPixelStage:Bool;
+	var isDaveSong:Bool;
+	var isBambiSong:Bool;
+	var isTristanSong:Bool;
+	var isExpunged:Bool;
 
 	var boyfriend:Array<Dynamic>;
 	var girlfriend:Array<Dynamic>;
